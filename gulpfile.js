@@ -7,25 +7,14 @@ const gulpChanged = require('gulp-changed');
 const gulpTS = require('gulp-typescript');
 const gulpTSlint = require('gulp-tslint');
 const typescript = require('typescript');
-// Rollup
-const rollup = require('rollup');
-const rollupStream = require('rollup-stream');
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const uglifyComposer = require('gulp-uglify/composer');
-const uglifyEs = require('uglify-es');
-const del = require('del');
 // Webpack
 const webpack = require('webpack');
-
-const rollupCommonJs = require('rollup-plugin-commonjs');
-const rollupNode = require('rollup-plugin-node-resolve');
+const del = require('del');
 
 const LIB_DIR = "lib/";
 const TS_DIST_LIB = "dist-es2015/";
 const DIST_DECLARATION = "";
 const DIST_LIB = "dist/";
-const BUNDLE_MODULE_NAME = "BirthdayImgMaker";
 const BUNDLE_NAME = "bundle.js";
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
