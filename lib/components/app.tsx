@@ -9,6 +9,9 @@ import {
 } from '../store';
 
 import {
+    Days,
+} from './days';
+import {
     Months,
 } from './months';
 import {
@@ -36,6 +39,7 @@ export class App extends React.Component<IAppProps, {}> {
         return <AppDiv>
             <Title title={store.title} onChange={titleChange}/>
             <Months store={store} />
+            <Days store={store} />
         </AppDiv>;
     }
 }

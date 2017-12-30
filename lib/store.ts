@@ -13,6 +13,10 @@ export class Store {
      * Title of each month.
      */
     @observable public month: string[] = (new Array(12)).fill('');
+    /**
+     * Title of each day.
+     */
+    @observable public day: string[] = (new Array(31)).fill('');
 
     /**
      * Set a new title.
@@ -27,6 +31,14 @@ export class Store {
     public setOneMonth(str: string, month: number): void {
         if (0 <= month && month < 12){
             this.month[month] = str;
+        }
+    }
+    /**
+     * Set a new string of a day.
+     */
+    public setOneDay(str: string, day: number): void {
+        if (0 <= day && day < 31){
+            this.day[day] = str;
         }
     }
 }
