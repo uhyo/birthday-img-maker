@@ -12,6 +12,9 @@ import {
     Body,
 } from './body';
 import {
+    Footer,
+} from './footer';
+import {
     Title,
 } from './title';
 
@@ -47,22 +50,38 @@ export class Renderer extends React.Component<IRendererProps, {}> {
             color,
         } = this.props;
 
+        const width = 720;
+        const height = 530;
         const topHeight = 45;
-        return <Stage width={720} height={500}>
+        const footerHeight = 30;
+
+        const restHeight = height - topHeight - footerHeight;
+        return <Stage width={width} height={height}>
             <Layer>
+                <Rect
+                    x={0} y={0} width={width} height={height}
+                    fill={color.titleBG}
+                />
+                <Rect
+                    x={0} y={topHeight} width={width} height={restHeight + footerHeight}
+                    fill={color.background}
+                />
                 <Title
                     size={size}
                     title={title}
                     topHeight={topHeight}
-                    background={color.titleBG}
                     text={color.titleFG} />
                 <Body
                     size={size}
                     topPadding={topHeight}
                     month={month}
                     day={day}
-                    background={color.background}
                     text={color.text}
+                />
+                <Footer
+                    width={width}
+                    height={footerHeight}
+                    top={height - footerHeight}
                 />
 
             </Layer>

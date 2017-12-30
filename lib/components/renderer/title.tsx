@@ -22,10 +22,6 @@ export interface ITitleProps {
      */
     title: string;
     /**
-     * background color of title.
-     */
-    background: string;
-    /**
      * text color of title.
      */
     text: string;
@@ -42,13 +38,10 @@ export class Title extends React.Component<ITitleProps, {}> {
             },
             topHeight,
             title,
-            background,
             text,
         } = this.props;
         const fontSize = 36;
         return <Group x={0} y={0}>
-            <Rect x={0} y={0} width={width} height={topHeight}
-                  fill={background} />
             <Text
                 text={title}
                 fontSize={fontSize}

@@ -30,10 +30,6 @@ export interface IBodyProps {
      */
     day: string[];
     /**
-     * background color.
-     */
-    background: string;
-    /**
      * text color.
      */
     text: string;
@@ -47,7 +43,6 @@ export const Body = ({
     topPadding,
     month,
     day,
-    background,
     text,
 }: IBodyProps)=> {
     // use left 40% for months, rest for days.
@@ -58,7 +53,6 @@ export const Body = ({
     const bodyh = height - topPadding;
 
     return <Group x={0} y={topPadding}>
-        <Rect x={0} y={0} width={width} height={bodyh} fill={background} />
         <Values
             width={monthAreaWidth}
             height={bodyh}
