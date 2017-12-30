@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 const Name = styled.div`
     text-align: right;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
     @media (max-width: 767px) {
         width: 3em;
         padding-right: 0.3em;
@@ -11,6 +14,9 @@ const Name = styled.div`
 `;
 
 const Value = styled.div`
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
     @media (max-width: 767px) {
         width: calc(100% - 4em);
         margin-bottom: 0.2em;

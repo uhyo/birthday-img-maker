@@ -12,6 +12,9 @@ import {
     Days,
 } from './days';
 import {
+    DownloadButton,
+} from './download-button';
+import {
     Months,
 } from './months';
 import {
@@ -27,7 +30,7 @@ export interface IAppProps {
 const AppDiv = styled.div`
     @media (min-width: 768px) {
         display: grid;
-        grid-template: auto auto auto / auto max-content;
+        grid-template: auto auto auto auto / auto max-content;
         grid-gap: 0.6em 0;
     }
 
@@ -51,10 +54,17 @@ const ValuesWrapper = styled.div`
     }
 `;
 
+const DownloadWrapper = styled.div`
+    @media (min-width: 768px) {
+        grid-column: 1 / 3;
+        grid-row: 3;
+    }
+`;
+
 const ResultWrapper = styled.div`
     @media (min-width: 768px) {
         grid-column: 1 / 3;
-        grid-row: 3 / 4;
+        grid-row: 4;
     }
     @media (max-width: 767px) {
         margin: 0.5em 0;
@@ -65,6 +75,7 @@ const ResultWrapper = styled.div`
 export class App extends React.Component<IAppProps, {}> {
     constructor(props: IAppProps){
         super(props);
+        this.handleDownload = this.handleDownload.bind(this);
     }
     public render(){
         const {
@@ -89,9 +100,24 @@ export class App extends React.Component<IAppProps, {}> {
             <ValuesWrapper>
                 <Days store={store} />
             </ValuesWrapper>
+            <DownloadWrapper>
+                <DownloadButton onClick={this.handleDownload} />
+            </DownloadWrapper>
             <ResultWrapper>
-                <Renderer title={title} month={month} day={day} color={color} />
+                <Renderer ref='renderer' title={title} month={month} day={day} color={color} />
             </ResultWrapper>
         </AppDiv>;
+    }
+    protected handleDownload(): void{
+        const renderer = this.refs.renderer as Renderer;
+        renderer.getURL()
+        .then((url)=> {
+            // download
+            const a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.download = 'uranai.png';
+            a.click();
+        });
     }
 }

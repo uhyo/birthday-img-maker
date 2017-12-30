@@ -81,7 +81,7 @@ export class Renderer extends React.Component<IRendererProps, IRendererState> {
         const scale = width <= innerWidth ? 1 : innerWidth / width;
         const stageWidth = Math.floor(width * scale);
         const stageHeight = Math.floor(height * scale);
-        return <Stage width={stageWidth} height={stageHeight}>
+        return <Stage ref='stage' width={stageWidth} height={stageHeight}>
             <Layer width={width} height={height} scaleX={scale} scaleY={scale}>
                 <Rect
                     x={0} y={0} width={width} height={height}
@@ -111,6 +111,20 @@ export class Renderer extends React.Component<IRendererProps, IRendererState> {
 
             </Layer>
         </Stage>;
+    }
+    public getURL(): Promise<string>{
+        return new Promise((resolve)=>{
+            const stage = this.refs.stage as any;
+            const s = stage.getStage();
+            s.toDataURL({
+                callback: resolve,
+                height: 530,
+                mimeType: 'image/png',
+                width: 720,
+                x: 0,
+                y: 0,
+            });
+        });
     }
     protected handleResize(){
         this.setState({

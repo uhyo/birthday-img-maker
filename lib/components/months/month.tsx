@@ -6,9 +6,15 @@ const Wrapper = styled.div`
 
 const Name = styled.div`
     text-align: right;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
 `;
 const Value = styled.div`
     padding-right: 0.5em;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
 `;
 
 const Input = styled.input`
