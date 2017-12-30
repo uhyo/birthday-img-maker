@@ -5,6 +5,9 @@ import {
     App,
 } from './components/app';
 import {
+    Renderer,
+} from './components/renderer';
+import {
     Store,
 } from './store';
 
@@ -14,6 +17,5 @@ import {
     const app = <App store={store} />;
 
     const apparea = document.getElementById('app');
-
     ReactDOM.render(app, apparea);
 }

@@ -7,6 +7,28 @@ import {
 } from './util';
 
 /**
+ * A color theme.
+ */
+export interface IColorTheme {
+    /**
+     * Background color of title.
+     */
+    titleBG: string;
+    /**
+     * Text color of title.
+     */
+    titleFG: string;
+    /**
+     * Background color of others.
+     */
+    background: string;
+    /**
+     * Text color of others.
+     */
+    text: string;
+}
+
+/**
  * A store of parameters.
  */
 export class Store {
@@ -22,6 +44,10 @@ export class Store {
      * Title of each day.
      */
     @observable public day: string[] = shuffle([...day_init]);
+    /**
+     * Color theme.
+     */
+    @observable public color: IColorTheme = makeColorTheme();
 
     /**
      * Set a new title.
@@ -106,3 +132,22 @@ const day_init = [
     // 31
     '何も起こらない',
 ];
+
+// Generate random color theme.
+function makeColorTheme(): IColorTheme {
+    // title
+    const th = Math.floor(Math.random() * 360);
+    const titleBG = `hsl(${th}, 100%, 89%)`;
+    const titleFG = `#000000`;
+    // normal
+    const h = Math.floor(th + Math.random() * 160 - 80) % 360;
+    const background = `hsl(${h}, 100%, 94%)`;
+    const text = `#000000`;
+
+    return {
+        background,
+        text,
+        titleBG,
+        titleFG,
+    };
+}
