@@ -25,22 +25,40 @@ export interface IAppProps {
     store: Store;
 }
 const AppDiv = styled.div`
-    display: grid;
-    grid-template: auto 1fr auto / auto auto;
-    grid-gap: 0.6em 0;
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template: auto auto auto / auto max-content;
+        grid-gap: 0.6em 0;
+    }
 
-    max-width: 800px;
+    max-width: 760px;
     margin: 0 auto;
 `;
 
 const TitleWrapper = styled.div`
-    grid-column: 1 / 3;
-    grid-row: 1 / 2;
+    @media (min-width: 768px) {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+    @media (max-width: 767px) {
+        margin: 0.5em 0;
+    }
+`;
+
+const ValuesWrapper = styled.div`
+    @media (max-width: 767px) {
+        margin: 0.5em 0;
+    }
 `;
 
 const ResultWrapper = styled.div`
-    grid-column: 1 / 3;
-    grid-row: 3 / 4;
+    @media (min-width: 768px) {
+        grid-column: 1 / 3;
+        grid-row: 3 / 4;
+    }
+    @media (max-width: 767px) {
+        margin: 0.5em 0;
+    }
 `;
 
 @observer
@@ -65,8 +83,12 @@ export class App extends React.Component<IAppProps, {}> {
             <TitleWrapper>
                 <Title title={store.title} onChange={titleChange}/>
             </TitleWrapper>
-            <Months store={store} />
-            <Days store={store} />
+            <ValuesWrapper>
+                <Months store={store} />
+            </ValuesWrapper>
+            <ValuesWrapper>
+                <Days store={store} />
+            </ValuesWrapper>
             <ResultWrapper>
                 <Renderer title={title} month={month} day={day} color={color} />
             </ResultWrapper>

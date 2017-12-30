@@ -3,6 +3,22 @@ import styled from 'styled-components';
 
 const Name = styled.div`
     text-align: right;
+    @media (max-width: 767px) {
+        width: 3em;
+        padding-right: 0.3em;
+        margin-bottom: 0.2em;
+    }
+`;
+
+const Value = styled.div`
+    @media (max-width: 767px) {
+        width: calc(100% - 4em);
+        margin-bottom: 0.2em;
+    }
+`;
+
+const Input = styled.input`
+    width: 100%;
 `;
 
 export interface IDayProps {
@@ -49,8 +65,8 @@ export const Day = ({
         <Name style={styleName}>
             <label htmlFor={inputid}>{day+1}日</label>
         </Name>
-        <div style={styleInput}>
-            <input id={inputid} type='text' value={value} onChange={changeHandler} />
-        </div>
+        <Value style={styleInput}>
+            <Input id={inputid} type='text' value={value} onChange={changeHandler} />
+        </Value>
     </>;
 };

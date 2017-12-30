@@ -7,6 +7,15 @@ const Wrapper = styled.div`
 const Name = styled.div`
     text-align: right;
 `;
+const Value = styled.div`
+    padding-right: 0.5em;
+`;
+
+const Input = styled.input`
+    @media (max-width: 767px) {
+        width: 100%;
+    }
+`;
 
 export interface IMonthProps {
     /**
@@ -39,9 +48,9 @@ export class Month extends React.Component<IMonthProps, {}> {
             <Name>
                 <label htmlFor={monthid}>{month+1}月</label>
             </Name>
-            <div>
-                <input id={monthid} type='text' value={value} onChange={this.onChange} />
-            </div>
+            <Value>
+                <Input id={monthid} type='text' value={value} onChange={this.onChange} />
+            </Value>
         </>;
     }
     protected onChange(e: React.ChangeEvent<HTMLInputElement>): void{

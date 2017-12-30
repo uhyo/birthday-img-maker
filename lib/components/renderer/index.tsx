@@ -29,6 +29,9 @@ export interface IRendererProps {
     day: string[];
     color: IColorTheme;
 }
+export interface IRendererState {
+    innerWidth: number;
+}
 
 /**
  * Size of canvas.
@@ -41,7 +44,21 @@ const size = {
 /**
  * Renders a result image.
  */
-export class Renderer extends React.Component<IRendererProps, {}> {
+export class Renderer extends React.Component<IRendererProps, IRendererState> {
+    constructor(props: IRendererProps){
+        super(props);
+        this.handleResize = this.handleResize.bind(this);
+        this.state = {
+            innerWidth: document.body.offsetWidth,
+        };
+    }
+    public componentDidMount(){
+        this.handleResize();
+        window.addEventListener('resize', this.handleResize, false);
+    }
+    public componentWillUnmount(){
+        window.removeEventListener('resize', this.handleResize, false);
+    }
     public render(){
         const {
             title,
@@ -49,6 +66,9 @@ export class Renderer extends React.Component<IRendererProps, {}> {
             day,
             color,
         } = this.props;
+        const {
+            innerWidth,
+        } = this.state;
 
         const width = 720;
         const height = 530;
@@ -56,8 +76,13 @@ export class Renderer extends React.Component<IRendererProps, {}> {
         const footerHeight = 30;
 
         const restHeight = height - topHeight - footerHeight;
-        return <Stage width={width} height={height}>
-            <Layer>
+
+        // scaling to fit available size.
+        const scale = width <= innerWidth ? 1 : innerWidth / width;
+        const stageWidth = Math.floor(width * scale);
+        const stageHeight = Math.floor(height * scale);
+        return <Stage width={stageWidth} height={stageHeight}>
+            <Layer width={width} height={height} scaleX={scale} scaleY={scale}>
                 <Rect
                     x={0} y={0} width={width} height={height}
                     fill={color.titleBG}
@@ -86,5 +111,10 @@ export class Renderer extends React.Component<IRendererProps, {}> {
 
             </Layer>
         </Stage>;
+    }
+    protected handleResize(){
+        this.setState({
+            innerWidth: document.body.offsetWidth,
+        });
     }
 }

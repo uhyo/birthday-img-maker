@@ -13,11 +13,14 @@ import {
 } from '../../store';
 
 const Wrapper = styled.div`
+    width: auto;
+    height: 100%;
+    margin: 0 0.2em;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-auto-rows: 1fr;
     grid-auto-flow: row;
-    grid-gap: 0 0.3em;
+    grid-gap: 0.2em 0.3em;
 `;
 
 export interface IMonthsProps {

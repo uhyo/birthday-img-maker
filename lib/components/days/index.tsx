@@ -10,11 +10,19 @@ import {
 } from '../../store';
 
 const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-auto-rows: 1fr;
-    grid-auto-flow: row;
-    grid-gap: 0.2em 0.3em;
+    width: 100%;
+    height: 100%;
+    @media (min-width: 768px) {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-auto-rows: 1fr;
+        grid-auto-flow: row;
+        grid-gap: 0.2em 0.3em;
+    }
+    @media (max-width: 767px) {
+        display: flex;
+        flex-flow: row wrap;
+    }
 `;
 
 export interface IDaysProps {

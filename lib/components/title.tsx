@@ -11,6 +11,9 @@ const Wrapper = styled.div`
 const InnerWrapper = styled.div`
     margin: 0 auto;
     width: max-content;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 `;
 
 const Header = styled.div`
@@ -21,6 +24,9 @@ const Header = styled.div`
 
 const Input = styled.input`
     width: 20em;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 `;
 
 export class Title extends React.Component<ITitleProps, {}> {
