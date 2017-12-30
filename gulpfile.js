@@ -3,6 +3,7 @@ const path = require('path');
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const gulpChanged = require('gulp-changed');
+const gulpDebug = require('gulp-debug');
 // TypeScript
 const gulpTS = require('gulp-typescript');
 const gulpTSlint = require('gulp-tslint');
@@ -33,7 +34,7 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
         rs.dts.pipe(gulp.dest(DIST_DECLARATION))
       );
     }else{
-      return rs.js.pipe(sourcemaps.write()).pipe(gulp.dest(TS_DIST_LIB));
+      return rs.js.pipe(sourcemaps.write()).pipe(gulpDebug({title:'tsc'})).pipe(gulp.dest(TS_DIST_LIB));
     }
   });
   gulp.task('watch-tsc', ['tsc'], ()=>{
@@ -73,8 +74,7 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
       }));
     };
     if (watch){
-      return compiler.watch({
-      }, (err, stats)=>{
+      return compiler.watch(config.watchOptions, (err, stats)=>{
         if (err){
           console.error(err);
         } else {
@@ -97,7 +97,10 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
   gulp.task('bundle', ['tsc'], ()=>{
     return runWebpack(false);
   });
-  gulp.task('watch-bundle', ['bundle'], ()=>{
+  gulp.task('watch-bundle-main', ()=>{
+    return runWebpack(true);
+  });
+  gulp.task('watch-bundle', ['tsc'], ()=>{
     return runWebpack(true);
   });
 }

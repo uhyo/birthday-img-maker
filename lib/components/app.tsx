@@ -7,6 +7,10 @@ import styled from 'styled-components';
 import {
     Store,
 } from '../store';
+
+import {
+    Months,
+} from './months';
 import {
     Title,
 } from './title';
@@ -31,6 +35,7 @@ export class App extends React.Component<IAppProps, {}> {
         };
         return <AppDiv>
             <Title title={store.title} onChange={titleChange}/>
+            <Months store={store} />
         </AppDiv>;
     }
 }
