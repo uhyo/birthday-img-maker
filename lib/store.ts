@@ -61,7 +61,9 @@ export class Store {
      */
     public setOneMonth(str: string, month: number): void {
         if (0 <= month && month < 12){
-            this.month[month] = str;
+            const newm = [... this.month];
+            newm[month] = str;
+            this.month = newm;
         }
     }
     /**
@@ -69,7 +71,9 @@ export class Store {
      */
     public setOneDay(str: string, day: number): void {
         if (0 <= day && day < 31){
-            this.day[day] = str;
+            const newd = [... this.day];
+            newd[day] = str;
+            this.day = newd;
         }
     }
 }
