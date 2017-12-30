@@ -3,7 +3,7 @@ import {
     Text,
 } from 'react-konva';
 
-const footerText = `誕生日占い画像を作るやつ https://uhyohyo.net/birthday-image/`;
+const footerText = `誕生日占い画像を作るやつ https://uhyohyo.net/birthday-img-maker/`;
 
 export interface IFooterProp {
     /**
