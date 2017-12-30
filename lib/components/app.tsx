@@ -22,6 +22,17 @@ export interface IAppProps {
     store: Store;
 }
 const AppDiv = styled.div`
+    display: grid;
+    grid-template: auto 1fr / auto auto;
+    grid-gap: 0.6em 0;
+
+    max-width: 800px;
+    margin: 0 auto;
+`;
+
+const TitleWrapper = styled.div`
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
 `;
 
 @observer
@@ -37,7 +48,9 @@ export class App extends React.Component<IAppProps, {}> {
             store.setTitle(title);
         };
         return <AppDiv>
-            <Title title={store.title} onChange={titleChange}/>
+            <TitleWrapper>
+                <Title title={store.title} onChange={titleChange}/>
+            </TitleWrapper>
             <Months store={store} />
             <Days store={store} />
         </AppDiv>;

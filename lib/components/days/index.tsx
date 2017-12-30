@@ -10,6 +10,11 @@ import {
 } from '../../store';
 
 const Wrapper = styled.div`
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: 1fr;
+    grid-auto-flow: row;
+    grid-gap: 0.2em 0.3em;
 `;
 
 export interface IDaysProps {
@@ -27,7 +32,11 @@ export class Days extends React.Component<IDaysProps, {}> {
                 const onChange = (newvalue: string)=>{
                     store.setOneDay(newvalue, d);
                 };
-                return <Day key={d} day={d} value={value} onChange={onChange} />;
+                const grid = {
+                    column: d < 16 ? 1 : 3,
+                    row: d < 16 ? d+1 : d-15,
+                };
+                return <Day key={d} day={d} value={value} grid={grid} onChange={onChange} />;
             })
         }</Wrapper>;
     }

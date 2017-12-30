@@ -13,6 +13,11 @@ import {
 } from '../../store';
 
 const Wrapper = styled.div`
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-auto-rows: 1fr;
+    grid-auto-flow: row;
+    grid-gap: 0 0.3em;
 `;
 
 export interface IMonthsProps {
@@ -34,4 +39,4 @@ export class Months extends React.Component<IMonthsProps, {}> {
             })
         }</Wrapper>;
     }
-};
+}

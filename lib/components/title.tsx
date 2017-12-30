@@ -8,10 +8,19 @@ export interface ITitleProps {
 const Wrapper = styled.div`
 `;
 
+const InnerWrapper = styled.div`
+    margin: 0 auto;
+    width: max-content;
+`;
+
 const Header = styled.div`
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: 4px;
 `;
 
 const Input = styled.input`
+    width: 20em;
 `;
 
 export class Title extends React.Component<ITitleProps, {}> {
@@ -24,8 +33,10 @@ export class Title extends React.Component<ITitleProps, {}> {
             title,
         } = this.props;
         return <Wrapper>
-            <Header>タイトルを入力</Header>
-            <p><Input type='text' value={title} onChange={this.onChange}/></p>
+            <InnerWrapper>
+                <Header>タイトル</Header>
+                <p><Input type='text' value={title} onChange={this.onChange}/></p>
+            </InnerWrapper>
         </Wrapper>;
     }
     protected onChange(e: React.ChangeEvent<HTMLInputElement>): void{

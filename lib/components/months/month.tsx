@@ -5,6 +5,7 @@ const Wrapper = styled.div`
 `;
 
 const Name = styled.div`
+    text-align: right;
 `;
 
 export interface IMonthProps {
@@ -33,12 +34,15 @@ export class Month extends React.Component<IMonthProps, {}> {
             value,
         } = this.props;
 
-        return <Wrapper>
-            <Name>{month+1}月</Name>
+        const monthid = `month-input-${month}`;
+        return <>
+            <Name>
+                <label htmlFor={monthid}>{month+1}月</label>
+            </Name>
             <div>
-                <input type='text' value={value} onChange={this.onChange} />
+                <input id={monthid} type='text' value={value} onChange={this.onChange} />
             </div>
-        </Wrapper>;
+        </>;
     }
     protected onChange(e: React.ChangeEvent<HTMLInputElement>): void{
         const {
