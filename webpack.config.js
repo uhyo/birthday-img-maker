@@ -5,7 +5,6 @@ const {
 } = require('license-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-
 const plugins = [];
 if (process.env.NODE_ENV === 'production'){
   plugins.push(new UglifyJsPlugin());
