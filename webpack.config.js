@@ -16,11 +16,12 @@ if (process.env.NODE_ENV === 'production'){
 }
 
 module.exports = {
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   devtool: process.env.NODE_ENV === 'production' ? false : 'source-map',
   entry: null,
   output: null,
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         loader: 'source-map-loader',
