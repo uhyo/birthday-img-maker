@@ -8,17 +8,13 @@
     "email": "uhyo@uhy.ooo",
     "url": ""
   },
-  "files": [
-    "lib"
-  ],
+  "files": ["lib"],
   "main": "lib/index.js",
-  "keywords": [
-    ""
-  ],
+  "keywords": [""],
   "devDependencies": {
     "@types/jest": "^22.2.3",
     "del": "^3.0.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-changed": "^3.2.0",
     "gulp-debug": "^4.0.0",
     "gulp-sourcemaps": "^2.6.4",
@@ -49,10 +45,7 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "lib(?:/.+)?/__tests__/.*\\.ts$",
-    "moduleFileExtensions": [
-      "js",
-      "ts"
-    ]
+    "moduleFileExtensions": ["js", "ts"]
   },
   "scripts": {
     "prepublish": "nsp check",
@@ -60,18 +53,9 @@
     "test": "jest"
   },
   "lint-staged": {
-    "*.ts": [
-      "tslint --fix",
-      "git add"
-    ],
-    "*.tsx": [
-      "tslint --fix",
-      "git add"
-    ],
-    "*.json": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.ts": ["tslint --fix", "git add"],
+    "*.tsx": ["tslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "repository": "uhyo/birthday-img-maker",
   "license": "MIT",

@@ -37,9 +37,9 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
       return rs.js.pipe(sourcemaps.write()).pipe(gulpDebug({title:'tsc'})).pipe(gulp.dest(TS_DIST_LIB));
     }
   });
-  gulp.task('watch-tsc', ['tsc'], ()=>{
+  gulp.task('watch-tsc', gulp.series('tsc', ()=>{
     gulp.watch(path.join(LIB_DIR, '**', '*.ts{,x}'), ['tsc']);
-  });
+  }));
   gulp.task('tslint', ()=>{
     return gulp.src(path.join(LIB_DIR, '**', '*.ts{,x}'))
     .pipe(gulpTSlint({
@@ -49,9 +49,9 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
       emitError: false,
     }));
   });
-  gulp.task('watch-tslint', ['tslint'], ()=>{
+  gulp.task('watch-tslint', gulp.series('tslint', ()=>{
     gulp.watch(path.join(LIB_DIR, '**', '*.ts{,x}'), ['tslint']);
-  });
+  }));
 }
 {
   function runWebpack(watch){
@@ -94,15 +94,15 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
   gulp.task('bundle-main', ()=>{
     return runWebpack(false);
   });
-  gulp.task('bundle', ['tsc'], ()=>{
+  gulp.task('bundle', gulp.series('tsc', ()=>{
     return runWebpack(false);
-  });
+  }));
   gulp.task('watch-bundle-main', ()=>{
     return runWebpack(true);
   });
-  gulp.task('watch-bundle', ['tsc'], ()=>{
+  gulp.task('watch-bundle', gulp.series('tsc', ()=>{
     return runWebpack(true);
-  });
+  }));
 }
 {
   gulp.task('clean', ()=>{
@@ -113,5 +113,5 @@ const PRODUCTION = process.env.NODE_ENV === 'production';
     return del(del_target);
   });
 }
-gulp.task('default', ['tsc', 'tslint', 'bundle']);
-gulp.task('watch', ['watch-tsc', 'watch-tslint', 'watch-bundle']);
+gulp.task('default', gulp.series('tsc', 'tslint', 'bundle'));
+gulp.task('watch', gulp.parallel('watch-tsc', 'watch-tslint', 'watch-bundle'));
